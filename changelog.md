@@ -3,6 +3,13 @@
 ----
 
 
+## 1.0.3
+
+- registering dependencies
+
+----
+
+
 ## 1.0.2
 
 - fix PSR-4
