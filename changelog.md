@@ -3,6 +3,13 @@
 ----
 
 
+## 1.0.4
+
+- another typos
+
+----
+
+
 ## 1.0.3
 
 - registering dependencies
