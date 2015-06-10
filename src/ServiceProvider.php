@@ -2,6 +2,7 @@
 
 namespace Axn\LaravelXform;
 
+use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 
 class ServiceProvider extends BaseServiceProvider
@@ -11,7 +12,29 @@ class ServiceProvider extends BaseServiceProvider
      *
      * @var bool
      */
-    protected $defer = true;
+    protected $defer = false;
+
+    /**
+     * Get the services provided by the provider.
+     *
+     * @return array
+     */
+    public function provides()
+    {
+        return ['xform', 'formbuilder'];
+    }
+
+    /**
+     * Perform post-registration booting of services.
+     *
+     * @return void
+     */
+    public function boot()
+    {
+        $this->publishes([
+            __DIR__ . '/config/xform.php' => config_path('xform.php'),
+        ]);
+    }
 
     /**
      * Register the service provider.
@@ -20,7 +43,9 @@ class ServiceProvider extends BaseServiceProvider
      */
     public function register()
     {
-        $this->mergeConfigFrom(config_path().'/xform.php', 'xform');
+        $this->registerDependencies();
+
+        $this->mergeConfigFrom(__DIR__ . '/config/xform.php', 'xform');
 
         $this->registerFormBuilder();
 
@@ -34,14 +59,13 @@ class ServiceProvider extends BaseServiceProvider
         });
     }
 
-    /**
-     * Get the services provided by the provider.
-     *
-     * @return array
-     */
-    public function provides()
+    protected function registerDependencies()
     {
-        return ['xform'];
+        $this->app->register('Collective\Html\HtmlServiceProvider');
+
+        $loader = AliasLoader::getInstance();
+        $loader->alias('Form', 'Collective\Html\FormFacade');
+        $loader->alias('Html', 'Collective\Html\HtmlFacade');
     }
 
     /**
