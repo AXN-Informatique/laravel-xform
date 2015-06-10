@@ -8,6 +8,6 @@
     ],
     "minimum-stability" : "dev",
     "require" : {
-        "laravelcollective/html" : "~5.0",
+        "laravelcollective/html" : "~5.0"
     }
 }
