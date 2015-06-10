@@ -3,8 +3,8 @@
 namespace Axn\LaravelXform;
 
 use Illuminate\Config\Repository as Config;
-use Illuminate\Html\HtmlBuilder;
-use Illuminate\Html\FormBuilder;
+use Collective\Html\HtmlBuilder;
+use Collective\Html\FormBuilder;
 use Illuminate\Session\SessionManager as Session;
 use Illuminate\Support\Str;
 
