@@ -1,0 +1,13 @@
+{
+    "name" : "axn/laravel-xform",
+    "description" : "Extend Laravel Form tool.",
+    "authors" : [{
+            "name" : "AXN Informatique",
+            "email" : "developpement@axn.fr"
+        }
+    ],
+    "minimum-stability" : "dev",
+    "require" : {
+        "laravelcollective/html" : "~5.0",
+    }
+}
