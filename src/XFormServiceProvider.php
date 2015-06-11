@@ -1,6 +1,6 @@
 <?php
 
-namespace Axn\LaravelXform;
+namespace Axn\LaravelXForm;
 
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\XFormServiceProvider;
@@ -21,7 +21,7 @@ class XFormServiceProvider extends BaseServiceProvider
      */
     public function provides()
     {
-        return ['xform', 'formbuilder'];
+        return ['xform', 'xformbuilder'];
     }
 
     /**
@@ -52,7 +52,7 @@ class XFormServiceProvider extends BaseServiceProvider
         $this->app->singleton('xform', function ($app) {
             return new XForm(
                 $app['html'],
-                $app['formbuilder'],
+                $app['xformbuilder'],
                 $app['config'],
                 $app['session']
             );
@@ -75,9 +75,9 @@ class XFormServiceProvider extends BaseServiceProvider
      */
     protected function registerFormBuilder()
     {
-        $this->app->bindShared('formbuilder', function($app)
+        $this->app->bindShared('xformbuilder', function($app)
         {
-            $form = new FormBuilder($app['html'], $app['url'], $app['session.store']->getToken());
+            $form = new XFormBuilder($app['html'], $app['url'], $app['session.store']->getToken());
 
             return $form->setSessionStore($app['session.store']);
         });

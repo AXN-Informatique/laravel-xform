@@ -1,6 +1,6 @@
 <?php
 
-namespace Axn\LaravelXform;
+namespace Axn\LaravelXForm\Facades;
 
 use Illuminate\Support\Facades\Facade;
 

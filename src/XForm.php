@@ -1,10 +1,10 @@
 <?php
 
-namespace Axn\LaravelXform;
+namespace Axn\LaravelXForm;
 
-use Illuminate\Config\Repository as Config;
 use Collective\Html\HtmlBuilder;
 use Collective\Html\FormBuilder;
+use Illuminate\Config\Repository as Config;
 use Illuminate\Session\SessionManager as Session;
 use Illuminate\Support\Str;
 

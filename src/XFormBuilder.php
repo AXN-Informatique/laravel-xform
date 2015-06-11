@@ -1,10 +1,10 @@
 <?php
 
-namespace Axn\LaravelXform;
+namespace Axn\LaravelXForm;
 
-use Collective\Html\FormBuilder as BaseFormBuilder;
+use Collective\Html\FormBuilder;
 
-class FormBuilder extends BaseFormBuilder
+class XFormBuilder extends FormBuilder
 {
     protected $prefix;
 
@@ -16,12 +16,15 @@ class FormBuilder extends BaseFormBuilder
      * @param  array   $options
      * @return string
      */
-    public function open(array $options = array())
+    public function open(array $options = [])
     {
-        if ( ! empty($options['prefix'])) {
+        if (!empty($options['prefix']))
+        {
             $this->prefix = $options['prefix'];
+
             array_forget($options, ['prefix']);
         }
+
         return parent::open($options);
     }
 
@@ -37,24 +40,28 @@ class FormBuilder extends BaseFormBuilder
         if (is_null($name))
         {
             $this->current_value = $value;
+
             return $this->current_value;
         }
 
-        if ( ! is_null($this->old($name)))
+        if (!is_null($this->old($name)))
         {
-            $this->current_value = $this->old($name);;
+            $this->current_value = $this->old($name);
+
             return $this->current_value;
         }
 
-        if ( ! is_null($value))
+        if (!is_null($value))
         {
             $this->current_value = $value;
+
             return $this->current_value;
         }
 
         if (isset($this->model))
         {
-            $this->current_value = $this->getModelValueAttribute(str_replace($this->prefix, "", $name));
+            $this->current_value = $this->getModelValueAttribute(str_replace($this->prefix, '', $name));
+
             return $this->current_value;
         }
     }
