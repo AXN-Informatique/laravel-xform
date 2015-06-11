@@ -3,9 +3,9 @@
 namespace Axn\LaravelXForm;
 
 use Illuminate\Foundation\AliasLoader;
-use Illuminate\Support\XFormServiceProvider;
+use Illuminate\Support\ServiceProvider;
 
-class XFormServiceProvider extends BaseServiceProvider
+class XFormServiceProvider extends ServiceProvider
 {
     /**
      * Indicates if loading of the provider is deferred.
