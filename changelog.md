@@ -3,9 +3,19 @@
 ----
 
 
+## 2.0.0
+
+- change classes names (BC breack)
+- add readme file
+
+
+----
+
+
 ## 1.0.4
 
 - another typos
+
 
 ----
 
@@ -14,12 +24,14 @@
 
 - registering dependencies
 
+
 ----
 
 
 ## 1.0.2
 
 - fix PSR-4
+
 
 ----
 
