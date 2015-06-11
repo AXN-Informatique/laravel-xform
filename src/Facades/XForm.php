@@ -2,9 +2,9 @@
 
 namespace Axn\LaravelXform;
 
-use Illuminate\Support\Facades\Facade as BaseFacade;
+use Illuminate\Support\Facades\Facade;
 
-class Facade extends BaseFacade
+class XForm extends Facade
 {
     protected static function getFacadeAccessor()
     {

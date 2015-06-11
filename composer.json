@@ -1,20 +1,20 @@
 {
-    "name" : "axn/laravel-xform",
-    "description" : "Extend Laravel Form tool.",
-    "authors" : [{
-            "name" : "AXN Informatique",
-            "email" : "developpement@axn.fr"
-        }
-    ],
-    "minimum-stability" : "dev",
-    "require" : {
-        "php" : ">=5.4.0",
-        "illuminate/support" : "~5.0",
-        "laravelcollective/html" : "~5.0"
-    },
-    "autoload" : {
-        "psr-4" : {
-            "Axn\\LaravelXform\\" : "src/"
-        }
-    }
+	"name" : "axn/laravel-xform",
+	"description" : "Extend Laravel Form tool.",
+	"authors" : [{
+			"name" : "AXN Informatique",
+			"email" : "developpement@axn.fr"
+		}
+	],
+	"minimum-stability" : "stable",
+	"require" : {
+		"php" : ">=5.4.0",
+		"illuminate/support" : "~5.0",
+		"laravelcollective/html" : "~5.0"
+	},
+	"autoload" : {
+		"psr-4" : {
+			"Axn\\LaravelXform\\" : "src/"
+		}
+	}
 }

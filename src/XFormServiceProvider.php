@@ -3,16 +3,16 @@
 namespace Axn\LaravelXform;
 
 use Illuminate\Foundation\AliasLoader;
-use Illuminate\Support\ServiceProvider as BaseServiceProvider;
+use Illuminate\Support\XFormServiceProvider;
 
-class ServiceProvider extends BaseServiceProvider
+class XFormServiceProvider extends BaseServiceProvider
 {
     /**
      * Indicates if loading of the provider is deferred.
      *
      * @var bool
      */
-    protected $defer = false;
+    protected $defer = true;
 
     /**
      * Get the services provided by the provider.
@@ -32,7 +32,7 @@ class ServiceProvider extends BaseServiceProvider
     public function boot()
     {
         $this->publishes([
-            __DIR__ . '/config/xform.php' => config_path('xform.php'),
+            __DIR__ . '/../config/xform.php' => config_path('xform.php'),
         ]);
     }
 
@@ -45,7 +45,7 @@ class ServiceProvider extends BaseServiceProvider
     {
         $this->registerDependencies();
 
-        $this->mergeConfigFrom(__DIR__ . '/config/xform.php', 'xform');
+        $this->mergeConfigFrom(__DIR__ . '/../config/xform.php', 'xform');
 
         $this->registerFormBuilder();
 
