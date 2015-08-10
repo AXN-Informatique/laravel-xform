@@ -799,6 +799,9 @@ class XForm
      */
     public function label($name, $value = null, $options = [], $required = false)
     {
+        if ($value === false) {
+            return '';
+        }
         $options = $this->getLabelOptions($options);
         return ($required)
                     ? sprintf($this->form->label($name, $value.' %s', $options), $this->getHtmlRequired())
@@ -815,6 +818,9 @@ class XForm
      */
     protected function getLabelTitle($label, $name)
     {
+        if ($label === false) {
+            return false;
+        }
         return $label ?: Str::title($name);
     }
 
