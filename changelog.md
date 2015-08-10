@@ -3,6 +3,14 @@
 ----
 
 
+## 2.1.0
+
+- False labels won't create empty labels fields anymore.
+
+
+----
+
+
 ## 2.0.0
 
 - change classes names (BC breack)
