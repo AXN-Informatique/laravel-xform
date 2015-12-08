@@ -3,6 +3,14 @@
 ----
 
 
+## 2.2.0
+
+- Adding file field type
+- Adding habilility to get mini-buttons for all files fields
+- Adding habilility to change default routes for all files fields
+
+----
+
 ## 2.1.0
 
 - False labels won't create empty labels fields anymore.

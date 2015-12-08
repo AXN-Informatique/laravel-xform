@@ -525,55 +525,11 @@ class XForm
      */
     public function img($name, $label = null, $value = null, $options = [])
     {
-        $name = $this->prefix.$name;
-
-        $label = $this->label(
-            $name,
-            $this->getLabelTitle($label, $name),
-            [],
-            isset($options['required']) || in_array('required', $options)
-        );
-
-        $route = '';
-        if (!empty($options['route']))
-        {
-            $route = $options['route'];
-            unset($options['route']);
-        }
-
-        $inputOptions = $this->getFieldOptions($options);
-        $inputElement = $this->form->input('file', $name, $value, $inputOptions);
-
-        $wrapperOptions['class'] = '';
-
-        if ($this->isHorizontal()) {
-            $wrapperOptions['class'] .= ' '.$this->getRightColumnClass();
-        }
-
-        $groupElement =
-            '<div '.$this->html->attributes($wrapperOptions).'>'.
-                $inputElement.
-                $this->getFieldError($name).
-            '</div>';
-
-        if (!empty($value))
-        {
-            $groupElement =
-                '<div class="img-container">'.
-                    '<a href="'.$route.'/delete-document/'.$name.'" '.
-                    'data-confirm="Confirmez-vous la suppression de cette image ?"><i></i></a>'.
-                    '<img src="'. GlideImage::load($value) .'">'.
-                '</div>'.
-                $groupElement;
-        }
-
-        $return = $this->getFormGroup($name, $label, $groupElement);
-
-        return $return;
+        return $this->file($name, $label, $value, $options, 'img');
     }
 
     /**
-     * Return a pdf file input, with display and delete links if exist
+     * Return a file input, with display and delete links if exist
      * @param  string $name
      * @param  string $label
      * @param  string $value
@@ -581,6 +537,19 @@ class XForm
      * @return string
      */
     public function pdf($name, $label = null, $value = null, $options = [])
+    {
+        return $this->file($name, $label, $value, $options, 'pdf');
+    }
+
+    /**
+     * Return a file input, with display and delete links if exist
+     * @param  string $name
+     * @param  string $label
+     * @param  string $value
+     * @param  array  $options
+     * @return string
+     */
+    public function file($name, $label = null, $value = null, $options = [], $type = null)
     {
         $name = $this->prefix.$name;
 
@@ -591,36 +560,86 @@ class XForm
             isset($options['required']) || in_array('required', $options)
         );
 
-        $route = '';
-
-        if (!empty($options['route']))
+        $delete_route = '';
+        if (!empty($options['delete-route']))
         {
-            $route = $options['route'];
-            unset($options['route']);
+            $delete_route = $options['delete-route'];
+            unset($options['delete-route']);
         }
 
-        $options = $this->getFieldOptions($options);
-        $wrapperOptions = ['class' => ($this->isHorizontal()) ? $this->getRightColumnClass() : null];
-        $inputElement = $this->form->input('file', $name, $value, $options);
-
-        $return = '<div class="row">';
-        $return .= '<div class="col-md-6">'.$inputElement.$this->getFieldError($name).'</div>';
-        if (!empty($value))
+        $delete_method = 'delete-document';
+        if (!empty($options['delete-method']))
         {
-            $return .= '<div class="col-md-3">';
-            $return .= '<a href="'.$value.'" target="_blank" class="btn-pdf"><i></i> <span>Afficher</span></a>';
-            $return .= '</div>';
-            $return .= '<div class="col-md-3">';
-            $return .= '<a href="'.$route.'/delete-document/'.$name.'" class="btn-delete-file"  data-confirm="Confirmez-vous la suppression de ce document ?"><i></i> <span>Supprimer</span></a>';
-            $return .= '</div>';
+            $delete_method = $options['delete-method'];
+            unset($options['delete-method']);
         }
-        else
-        {
-            $return .= '<div class="col-md-6"></div>';
-        }
-        $return .= '</div>';
 
-        $groupElement = '<div '.$this->html->attributes($wrapperOptions).'>'.$return.'</div>';
+        $hide_btn_text = false;
+        if (!empty($options['hide-btn-text']))
+        {
+            $hide_btn_text = $options['hide-btn-text'];
+            unset($options['hide-btn-text']);
+        }
+
+        $inputOptions = $this->getFieldOptions($options);
+        $inputElement = $this->form->input('file', $name, $value, $inputOptions);
+
+        $wrapperOptions['class'] = '';
+        if ($this->isHorizontal()) {
+            $wrapperOptions['class'] .= ' '.$this->getRightColumnClass();
+        }
+
+        switch ($type) {
+            case 'img':
+                $groupElement = '';
+                if (!empty($value))
+                {
+                    $groupElement .=
+                        '<div class="img-container">'.
+                            '<a href="'.$delete_route.'/'.$delete_method.'/'.$name.'" '.
+                            'data-confirm="Confirmez-vous la suppression de cette image ?" data-toggle="tooltip" title="Supprimer l’image"><i></i></a>'.
+                            '<img src="'. GlideImage::load($value) .'">'.
+                        '</div>';
+                }
+
+                $groupElement .= '<div '.$this->html->attributes($wrapperOptions).'>'.
+                        $inputElement.
+                        $this->getFieldError($name).
+                    '</div>';
+                break;
+
+            default:
+                if (!empty($value))
+                {
+                    $return = '<div class="input-group">';
+                    $return .= $inputElement.$this->getFieldError($name);
+                    $return .= '<div class="input-group-btn">';
+                    $return .= '<a href="'.$value.'" target="_blank" class="btn btn-primary" data-toggle="tooltip" title="Voir le fichier"><i class="fa fa-file-o"></i>';
+                    if($hide_btn_text) {
+                        $return .= '<span class="sr-only"> ';
+                    } else {
+                        $return .= ' <span> ';
+                    }
+                    $return .= 'Afficher</span></a>';
+                    $return .= '<a href="'.$delete_route.'/'.$delete_method.'/'.$name.'" class="btn btn-danger"  data-confirm="Confirmez-vous la suppression de ce document ?" data-toggle="tooltip" title="Supprimer le fichier"><i class="fa fa-trash"></i>';
+                    if($hide_btn_text) {
+                        $return .= '<span class="sr-only">';
+                    } else {
+                        $return .= ' <span>';
+                    }
+                    $return .= 'Supprimer</span></a>';
+                    $return .= '</div>';
+                    $return .= '</div>';
+                }
+                else
+                {
+                    $return = '<div class="row">';
+                    $return .= '<div class="col-md-12">'.$inputElement.$this->getFieldError($name).'</div>';
+                    $return .= '</div>';
+                }
+                $groupElement = '<div '.$this->html->attributes($wrapperOptions).'>'.$return.'</div>';
+                break;
+        }
 
         return $this->getFormGroup($name, $label, $groupElement);
     }
