@@ -2,6 +2,13 @@ CHANGELOG
 =========
 
 
+3.0.0-dev
+---------
+
+- API change (BC breack) : rename XForm::img() in XForm::glideImg()
+
+----
+
 2.2.1
 -----
 

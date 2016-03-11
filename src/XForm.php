@@ -529,6 +529,21 @@ class XForm
     }
 
     /**
+     * Return a img file input, with display box and delete link if exist.
+     * Image src is loaded with Glide.
+     *
+     * @param  string $name
+     * @param  string $label
+     * @param  string $value
+     * @param  array  $options
+     * @return string
+     */
+    public function glideImg($name, $label = null, $value = null, $options = [])
+    {
+        return $this->file($name, $label, $value, $options, 'img-glide');
+    }
+
+    /**
      * Return a file input, with display and delete links if exist
      * @param  string $name
      * @param  string $label
@@ -591,14 +606,21 @@ class XForm
 
         switch ($type) {
             case 'img':
+            case 'img-glide':
                 $groupElement = '';
                 if (!empty($value))
                 {
+                    $src = $value;
+
+                    if ($type === 'img-glide') {
+                        $src = GlideImage::load($value)->getUrl();
+                    }
+
                     $groupElement .=
                         '<div class="img-container">'.
-                            '<a href="'.$delete_route.'/'.$delete_method.'/'.$name.'" '.
+                            '<a href="' . $delete_route . '/' . $delete_method . '/' . $name.'" '.
                             'data-confirm="Confirmez-vous la suppression de cette image ?" data-toggle="tooltip" title="Supprimer l’image"><i></i></a>'.
-                            '<img src="'. GlideImage::load($value) .'">'.
+                            '<img src="' . $src . '">'.
                         '</div>';
                 }
 
