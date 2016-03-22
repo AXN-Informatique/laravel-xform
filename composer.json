@@ -1,12 +1,16 @@
 {
     "name" : "axn/laravel-xform",
     "description" : "Extend Laravel Form tool.",
+    "homepage" : "https://bitbucket.org/axn/laravel-xform",
+    "support" : {
+        "issues" : "https://bitbucket.org/axn/laravel-xform/issues?status=new&status=open"
+    },
     "authors" : [{
             "name" : "AXN Informatique",
             "email" : "developpement@axn.fr"
         }
     ],
-    "minimum-stability" : "stable",
+    "license" : "MIT",
     "require" : {
         "php" : ">=5.4.0",
         "illuminate/support" : "~5.0",
