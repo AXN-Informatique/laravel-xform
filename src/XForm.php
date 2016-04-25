@@ -86,7 +86,8 @@ class XForm
             {
                 $options['class'] = 'form-horizontal';
                 $this->type = 'horizontal';
-            } elseif ($defaultForm === 'inline')
+            }
+            elseif ($defaultForm === 'inline')
             {
                 $options['class'] = 'form-inline';
                 $this->type = 'inline';
@@ -175,7 +176,7 @@ class XForm
     }
 
     /**
-     * Close the form
+     * Close the form.
      *
      * @return mixed
      */
@@ -186,33 +187,36 @@ class XForm
 
     /**
      * Is the form an horizontal one ?
+     *
      * @return boolean
      */
     protected function isHorizontal()
     {
-        return $this->type == 'horizontal';
+        return $this->type === 'horizontal';
     }
 
     /**
      * Is the form an inline one ?
+     *
      * @return boolean
      */
     protected function isInline()
     {
-        return $this->type == 'inline';
+        return $this->type === 'inline';
     }
 
     /**
      * Is the form a default one ?
+     *
      * @return boolean
      */
     protected function isDefault()
     {
-        return $this->type == 'default';
+        return $this->type === 'default';
     }
 
     /**
-     * Create a bootstrap static field
+     * Create a bootstrap static field.
      *
      * @param $name
      * @param null $label
@@ -222,7 +226,7 @@ class XForm
      */
     public function staticField($name, $label = null, $value = null, $options = [])
     {
-        $name = $this->prefix.$name;
+        $name = $this->prefix . $name;
 
         $options = array_merge(['class' => 'form-control-static'], $options);
 
@@ -330,7 +334,8 @@ class XForm
     }
 
     /**
-     * Create a Bootstrap tel field input
+     * Create a Bootstrap tel field input.
+     *
      * @param  string $name
      * @param  string $label
      * @param  string $value
@@ -342,9 +347,9 @@ class XForm
         return $this->input('tel', $name, $label, $value, $options);
     }
 
-
     /**
-     * Create a Bootstrap text field input with a submit button
+     * Create a Bootstrap text field input with a submit button.
+     *
      * @param  string $name
      * @param  string $label
      * @param  string $value
@@ -357,7 +362,8 @@ class XForm
     }
 
     /**
-     * Create a Bootstrap date field input
+     * Create a Bootstrap date field input.
+     *
      * @param  string $name
      * @param  string $label
      * @param  string $value
@@ -370,7 +376,8 @@ class XForm
     }
 
     /**
-     * Create a Bootstrap number field input
+     * Create a Bootstrap number field input.
+     *
      * @param  string $name
      * @param  string $label
      * @param  string $value
@@ -383,7 +390,24 @@ class XForm
     }
 
     /**
-     * Create a Bootstrap hidden field input
+     * Create a Bootstrap decimal field input.
+     *
+     * @param unknown $name
+     * @param unknown $label
+     * @param unknown $value
+     * @param array $options
+     * @return string
+     */
+    public function decimal($name, $label = null, $value = null, $options = [])
+    {
+        $options['class'] = isset($options['class']) ? $options['class'] . ' decimal-input' : 'decimal-input';
+
+        return $this->input('text', $name, $label, $value, $options);
+    }
+
+    /**
+     * Create a Bootstrap hidden field input.
+     *
      * @param  string $name
      * @param  string $value
      * @param  array  $options
@@ -506,6 +530,7 @@ class XForm
 
     /**
      * Create a Bootstrap button.
+     *
      * @param  string $value
      * @param  array $options
      * @return string
@@ -516,7 +541,8 @@ class XForm
     }
 
     /**
-     * Return a img file input, with display box and delete link if exist
+     * Return a img file input, with display box and delete link if exist.
+     *
      * @param  string $name
      * @param  string $label
      * @param  string $value
@@ -544,7 +570,8 @@ class XForm
     }
 
     /**
-     * Return a file input, with display and delete links if exist
+     * Return a file input, with display and delete links if exist.
+     *
      * @param  string $name
      * @param  string $label
      * @param  string $value
@@ -557,7 +584,8 @@ class XForm
     }
 
     /**
-     * Return a file input, with display and delete links if exist
+     * Return a file input, with display and delete links if exist.
+     *
      * @param  string $name
      * @param  string $label
      * @param  string $value

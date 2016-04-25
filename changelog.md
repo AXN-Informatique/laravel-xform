@@ -1,6 +1,11 @@
 CHANGELOG
 =========
 
+3.0.2
+-----
+
+- Added "decimal" input
+
 3.0.1
 -----
 
