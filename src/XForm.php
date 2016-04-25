@@ -390,12 +390,28 @@ class XForm
     }
 
     /**
+     * Create a Bootstrap integer field input.
+     *
+     * @param  string $name
+     * @param  string $label
+     * @param  string $value
+     * @param  array  $options
+     * @return string
+     */
+    public function integer($name, $label = null, $value = null, $options = [])
+    {
+        $options['class'] = isset($options['class']) ? $options['class'] . ' integer-input' : 'integer-input';
+
+        return $this->input('text', $name, $label, $value, $options);
+    }
+
+    /**
      * Create a Bootstrap decimal field input.
      *
-     * @param unknown $name
-     * @param unknown $label
-     * @param unknown $value
-     * @param array $options
+     * @param  string $name
+     * @param  string $label
+     * @param  string $value
+     * @param  array  $options
      * @return string
      */
     public function decimal($name, $label = null, $value = null, $options = [])

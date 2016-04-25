@@ -1,6 +1,11 @@
 CHANGELOG
 =========
 
+3.0.3
+-----
+
+- Added "integer" input
+
 3.0.2
 -----
 
