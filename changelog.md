@@ -1,6 +1,11 @@
 CHANGELOG
 =========
 
+3.0.4
+-----
+
+- Noms de classes "input-integer" et "input-decimal"
+
 3.0.3
 -----
 

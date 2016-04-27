@@ -400,7 +400,7 @@ class XForm
      */
     public function integer($name, $label = null, $value = null, $options = [])
     {
-        $options['class'] = isset($options['class']) ? $options['class'] . ' integer-input' : 'integer-input';
+        $options['class'] = isset($options['class']) ? $options['class'] . ' input-integer' : 'input-integer';
 
         return $this->input('text', $name, $label, $value, $options);
     }
@@ -416,7 +416,7 @@ class XForm
      */
     public function decimal($name, $label = null, $value = null, $options = [])
     {
-        $options['class'] = isset($options['class']) ? $options['class'] . ' decimal-input' : 'decimal-input';
+        $options['class'] = isset($options['class']) ? $options['class'] . ' input-decimal' : 'input-decimal';
 
         return $this->input('text', $name, $label, $value, $options);
     }
