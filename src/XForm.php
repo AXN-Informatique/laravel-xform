@@ -422,6 +422,22 @@ class XForm
     }
 
     /**
+     * Create a Bootstrap percent field input.
+     *
+     * @param  string $name
+     * @param  string $label
+     * @param  string $value
+     * @param  array  $options
+     * @return string
+     */
+    public function percent($name, $label = null, $value = null, $options = [])
+    {
+        $options['class'] = isset($options['class']) ? $options['class'] . ' input-percent' : 'input-percent';
+
+        return $this->input('text', $name, $label, $value, $options);
+    }
+
+    /**
      * Create a Bootstrap hidden field input.
      *
      * @param  string $name

@@ -1,6 +1,11 @@
 CHANGELOG
 =========
 
+3.0.5
+-----
+
+- Nom de classe "input-percent"
+
 3.0.4
 -----
 
