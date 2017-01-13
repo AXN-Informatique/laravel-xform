@@ -2,7 +2,6 @@
 
 namespace Axn\LaravelXForm;
 
-use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\ServiceProvider;
 
 class XFormServiceProvider extends ServiceProvider
@@ -63,9 +62,8 @@ class XFormServiceProvider extends ServiceProvider
     {
         $this->app->register('Collective\Html\HtmlServiceProvider');
 
-        $loader = AliasLoader::getInstance();
-        $loader->alias('Form', 'Collective\Html\FormFacade');
-        $loader->alias('Html', 'Collective\Html\HtmlFacade');
+        $this->app->alias('Form', 'Collective\Html\FormFacade');
+        $this->app->alias('Html', 'Collective\Html\HtmlFacade');
     }
 
     /**
