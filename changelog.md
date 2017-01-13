@@ -1,6 +1,11 @@
 CHANGELOG
 =========
 
+4.0.1
+-----
+
+- Fix Form constructor signature
+
 4.0.0
 -----
 

@@ -75,7 +75,7 @@ class XFormServiceProvider extends ServiceProvider
     {
         $this->app->singleton('xformbuilder', function($app)
         {
-            $form = new XFormBuilder($app['html'], $app['url'], $app['session.store']->getToken());
+            $form = new XFormBuilder($app['html'], $app['url'], $app['view'], $app['session.store']->getToken());
 
             return $form->setSessionStore($app['session.store']);
         });
