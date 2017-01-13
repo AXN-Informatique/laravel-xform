@@ -75,7 +75,7 @@ class XFormServiceProvider extends ServiceProvider
      */
     protected function registerFormBuilder()
     {
-        $this->app->bindShared('xformbuilder', function($app)
+        $this->app->singleton('xformbuilder', function($app)
         {
             $form = new XFormBuilder($app['html'], $app['url'], $app['session.store']->getToken());
 
